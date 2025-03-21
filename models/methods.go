@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+//===( This is a function that will populate the file input into the virtual {3x3} rubik's cube )====
 func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 	file, err := os.Open(fileName)
 	if err != nil {
@@ -38,7 +39,6 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 
 	rubikCube := &Rubik_cube{
 		Front_face: faces[0][4],
-		Top_face:   faces[4][4],
 		Top_Layer: Top_Layer{
 			Left_front: Corner_cubit{Top_face: faces[4][6], Front_face: faces[0][0], Right_face: faces[3][2]},
 			Left_mid: Mid_cubit{Top_face: faces[4][3], Front_face: faces[3][1]},
@@ -55,11 +55,10 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 			Left_back:  Mid_cubit{Front_face: faces[2][5], Top_face: faces[3][3]},
 			Right_front:  Mid_cubit{Front_face: faces[0][5], Top_face: faces[1][3]},
 			Right_back:  Mid_cubit{Front_face: faces[1][5], Top_face: faces[2][3]},
-			Center_front:  Mid_cubit{Front_face: faces[0][4]},
-			Center_back:  Mid_cubit{Front_face: faces[2][4]},
-			Center_right:  Mid_cubit{Front_face: faces[1][4]},
-			Center_left: Mid_cubit{Front_face: faces[3
-				git commit ][4]},
+			Center_front_cubit: faces[0][4],
+			Center_back_cubit: faces[2][4],
+			Center_right_cubit: faces[1][4],
+			Center_left_cubit: faces[3][4],
 		},
 		Bottom_Layer: Bottom_Layer{
 			Left_front: Corner_cubit{Top_face: faces[5][0], Front_face: faces[0][6], Right_face: faces[3][6]},
