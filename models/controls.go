@@ -1,7 +1,7 @@
 package models
 
 
-func (r *Rubik_cube)U() Rubik_cube {
+func (r *Rubik_cube)U() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -21,11 +21,11 @@ func (r *Rubik_cube)U() Rubik_cube {
 	//==( Update the left row )===
 	tmp_r.Top_Layer.Left_mid = r.Top_Layer.Mid_front
 	r = &tmp_r
-	return *r
+	return r
 }
 
 //===( This function will define the method that performs the operation of the rotation of the top layer in the counterclockwise direction )===
-func (r *Rubik_cube)U_p() Rubik_cube {
+func (r *Rubik_cube)U_p() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -41,9 +41,9 @@ func (r *Rubik_cube)U_p() Rubik_cube {
 
 	tmp_r.Top_Layer.Mid_front = r.Top_Layer.Left_mid
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)R() Rubik_cube {
+func (r *Rubik_cube)R() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -63,9 +63,9 @@ func (r *Rubik_cube)R() Rubik_cube {
 	//==( Update the top column )===
 	tmp_r.Top_Layer.Right_mid = r.Middle_Layer.Right_front
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)R_p() Rubik_cube {
+func (r *Rubik_cube)R_p() *Rubik_cube {
 
 	tmp_r := *r
 	
@@ -85,9 +85,9 @@ func (r *Rubik_cube)R_p() Rubik_cube {
 	//==( Update the top column )===
 	tmp_r.Middle_Layer.Right_front = r.Top_Layer.Right_mid
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)L() Rubik_cube {
+func (r *Rubik_cube)L() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -103,9 +103,9 @@ func (r *Rubik_cube)L() Rubik_cube {
 
 	tmp_r.Top_Layer.Left_mid = r.Middle_Layer.Left_back
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)L_p() Rubik_cube {
+func (r *Rubik_cube)L_p() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -121,9 +121,9 @@ func (r *Rubik_cube)L_p() Rubik_cube {
 
 	tmp_r.Middle_Layer.Left_back = r.Top_Layer.Left_mid
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)F() Rubik_cube {
+func (r *Rubik_cube)F() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -138,9 +138,9 @@ func (r *Rubik_cube)F() Rubik_cube {
 	tmp_r.Bottom_Layer.Mid_front = r.Middle_Layer.Right_front
 	tmp_r.Bottom_Layer.Right_front = r.Top_Layer.Right_front
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)F_p() Rubik_cube {
+func (r *Rubik_cube)F_p() *Rubik_cube {
 
 	tmp_r := *r
 	
@@ -155,9 +155,9 @@ func (r *Rubik_cube)F_p() Rubik_cube {
 	tmp_r.Middle_Layer.Right_front = r.Bottom_Layer.Mid_front
 	tmp_r.Top_Layer.Right_front = r.Bottom_Layer.Right_front
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)B() Rubik_cube {
+func (r *Rubik_cube)B() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -172,9 +172,9 @@ func (r *Rubik_cube)B() Rubik_cube {
 	tmp_r.Middle_Layer.Right_back = r.Bottom_Layer.Mid_back
 	tmp_r.Top_Layer.Right_back = r.Bottom_Layer.Right_back
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)B_p() Rubik_cube {
+func (r *Rubik_cube)B_p() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -189,9 +189,9 @@ func (r *Rubik_cube)B_p() Rubik_cube {
 	tmp_r.Bottom_Layer.Mid_back = r.Middle_Layer.Right_back
 	tmp_r.Bottom_Layer.Right_back = r.Top_Layer.Right_back
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)D() Rubik_cube {
+func (r *Rubik_cube)D() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -207,9 +207,9 @@ func (r *Rubik_cube)D() Rubik_cube {
 
 	tmp_r.Bottom_Layer.Mid_front = r.Bottom_Layer.Left_mid
 	r = &tmp_r
-	return *r
+	return r
 }
-func (r *Rubik_cube)D_p() Rubik_cube {
+func (r *Rubik_cube)D_p() *Rubik_cube {
 
 	tmp_r := *r
 
@@ -229,5 +229,5 @@ func (r *Rubik_cube)D_p() Rubik_cube {
 	//==( Update the left row )===
 	tmp_r.Bottom_Layer.Left_mid = r.Bottom_Layer.Mid_front
 	r = &tmp_r
-	return *r
+	return r
 }
