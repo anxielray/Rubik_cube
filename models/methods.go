@@ -37,8 +37,8 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 	}
 
 	rubikCube := &Rubik_cube{
-		Front_face: faces[0][0],
-		Top_face:   faces[4][0],
+		Front_face: faces[0][4],
+		Top_face:   faces[4][4],
 		Top_Layer: Top_Layer{
 			Left_front: Corner_cubit{Top_face: faces[4][0], Front_face: faces[0][0], Right_face: faces[1][0]},
 			Mid_front:  Mid_cubit{Top_face: faces[4][1], Front_face: faces[0][1]},
