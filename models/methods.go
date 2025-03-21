@@ -51,8 +51,15 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 			Center_cubit: faces[4][4],
 		},
 		Middle_Layer: Middle_Layer{
-			Left_front:  Mid_cubit{Front_face: faces[0][3], Top_face: faces[4][3]},
-			Right_front: Mid_cubit{Front_face: faces[0][5], Top_face: faces[4][5]},
+			Left_front:  Mid_cubit{Front_face: faces[0][3], Top_face: faces[3][5]},
+			Left_back:  Mid_cubit{Front_face: faces[2][5], Top_face: faces[3][3]},
+			Right_front:  Mid_cubit{Front_face: faces[0][5], Top_face: faces[1][3]},
+			Right_back:  Mid_cubit{Front_face: faces[1][5], Top_face: faces[2][3]},
+			Center_front:  Mid_cubit{Front_face: faces[0][4]},
+			Center_back:  Mid_cubit{Front_face: faces[2][4]},
+			Center_right:  Mid_cubit{Front_face: faces[1][4]},
+			Center_left: Mid_cubit{Front_face: faces[3
+				git commit ][4]},
 		},
 		Bottom_Layer: Bottom_Layer{
 			Left_front: Corner_cubit{Top_face: faces[5][0], Front_face: faces[0][6], Right_face: faces[3][6]},
