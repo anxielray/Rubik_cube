@@ -9,7 +9,7 @@ type Mid_cubit struct {
 type Corner_cubit struct {
 	Top_face string
 	Front_face string
-	Right_face string
+	Side_face string
 }
 
 type Top_Layer  struct {
