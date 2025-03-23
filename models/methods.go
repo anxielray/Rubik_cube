@@ -75,3 +75,45 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 
 	return rubikCube, nil
 }
+
+func Rotation(c *Rubik_cube, plane string, angle int) *Rubik_cube {
+
+	if plane == "x" {
+		if angle == 90 || angle == -270 {
+			c = c.U()
+			c = c.Mx()
+			c = c.D_p()
+		} else if angle == 180 || angle == -180 {
+			for range 2 {
+				c = c.U()
+				c = c.Mx()
+				c = c.D_p()
+			}
+		} else if angle == 270 || angle == -90 {
+			for range 3 {
+				c = c.U()
+				c = c.Mx()
+				c = c.D_p()
+			}
+		}
+	} else if plane == "y" {
+		if angle == 90 || angle == -270 {
+			c = c.R()
+			c = c.My()
+			c = c.L_p()
+		} else if angle == 180 || angle == -180 {
+			for range 2 {
+				c = c.R()
+				c = c.My()
+				c = c.L_p()
+			}
+		} else if angle == 270 || angle == -90 {
+			for range 3 {
+				c = c.R()
+				c = c.My()
+				c = c.L_p()
+			}
+		}
+	}
+	return c
+}
