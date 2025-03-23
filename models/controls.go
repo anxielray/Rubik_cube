@@ -337,3 +337,37 @@ func (r *Rubik_cube) D_p() *Rubik_cube {
 	r = &tmp_r
 	return r
 }
+
+func (r *Rubik_cube) Mx() *Rubik_cube {
+
+	tmp_r := *r
+	tmp_r.Middle_Layer = Middle_Layer{
+		Left_front: Mid_cubit{Top_face: r.Middle_Layer.Right_front.Front_face, Front_face: r.Middle_Layer.Right_front.Top_face},
+		Center_left_cubit: r.Middle_Layer.Center_front_cubit,
+		Left_back: Mid_cubit{Top_face: r.Middle_Layer.Left_front.Front_face, Front_face: r.Middle_Layer.Left_front.Top_face},
+		Center_front_cubit: r.Middle_Layer.Center_right_cubit,
+		Center_back_cubit: r.Middle_Layer.Center_left_cubit,
+		Right_front: Mid_cubit{Top_face: r.Middle_Layer.Right_back.Top_face, Front_face: r.Middle_Layer.Right_back.Front_face},
+		Center_right_cubit: r.Middle_Layer.Center_back_cubit,
+		Right_back: Mid_cubit{Top_face: r.Middle_Layer.Left_back.Top_face, Front_face: r.Middle_Layer.Left_back.Front_face},
+	}
+	r = &tmp_r
+	return r
+}
+
+func (r *Rubik_cube) My() *Rubik_cube {
+
+	tmp_r := *r
+	tmp_r.Middle_Layer = Middle_Layer{
+		Left_front: Mid_cubit{Top_face: r.Middle_Layer.Right_front.Front_face, Front_face: r.Middle_Layer.Right_front.Top_face},
+		Center_left_cubit: r.Middle_Layer.Center_front_cubit,
+		Left_back: Mid_cubit{Top_face: r.Middle_Layer.Left_front.Front_face, Front_face: r.Middle_Layer.Left_front.Top_face},
+		Center_front_cubit: r.Middle_Layer.Center_right_cubit,
+		Center_back_cubit: r.Middle_Layer.Center_left_cubit,
+		Right_front: Mid_cubit{Top_face: r.Middle_Layer.Right_back.Top_face, Front_face: r.Middle_Layer.Right_back.Front_face},
+		Center_right_cubit: r.Middle_Layer.Center_back_cubit,
+		Right_back: Mid_cubit{Top_face: r.Middle_Layer.Left_back.Top_face, Front_face: r.Middle_Layer.Left_back.Front_face},
+	}
+	r = &tmp_r
+	return r
+}
