@@ -357,16 +357,38 @@ func (r *Rubik_cube) Mx() *Rubik_cube {
 
 func (r *Rubik_cube) My() *Rubik_cube {
 
-	tmp_r := *r
-	tmp_r.Middle_Layer = Middle_Layer{
-		Left_front: Mid_cubit{Top_face: r.Middle_Layer.Right_front.Front_face, Front_face: r.Middle_Layer.Right_front.Top_face},
-		Center_left_cubit: r.Middle_Layer.Center_front_cubit,
-		Left_back: Mid_cubit{Top_face: r.Middle_Layer.Left_front.Front_face, Front_face: r.Middle_Layer.Left_front.Top_face},
-		Center_front_cubit: r.Middle_Layer.Center_right_cubit,
-		Center_back_cubit: r.Middle_Layer.Center_left_cubit,
-		Right_front: Mid_cubit{Top_face: r.Middle_Layer.Right_back.Top_face, Front_face: r.Middle_Layer.Right_back.Front_face},
-		Center_right_cubit: r.Middle_Layer.Center_back_cubit,
-		Right_back: Mid_cubit{Top_face: r.Middle_Layer.Left_back.Top_face, Front_face: r.Middle_Layer.Left_back.Front_face},
+	tmp_r := Rubik_cube{
+		Top_Layer: Top_Layer{
+			Left_front:  r.Top_Layer.Left_front,
+			Left_mid:    r.Top_Layer.Left_mid,
+			Left_back:   r.Top_Layer.Left_back,
+			Mid_front:   Mid_cubit{Top_face: r.Bottom_Layer.Mid_front.Front_face, Front_face: r.Bottom_Layer.Mid_front.Top_face},
+			Mid_back:    Mid_cubit{Top_face: r.Top_Layer.Mid_front.Front_face, Front_face: r.Top_Layer.Mid_front.Top_face},
+			Right_front: r.Top_Layer.Right_front,
+			Right_mid:   r.Top_Layer.Right_mid,
+			Right_back:  r.Top_Layer.Right_back,
+		},
+		Middle_Layer: Middle_Layer{
+			Left_front:         r.Middle_Layer.Left_front,
+			Left_back:          r.Middle_Layer.Left_back,
+			Right_front:        r.Middle_Layer.Right_front,
+			Right_back:         r.Middle_Layer.Right_back,
+			Center_front_cubit: r.Bottom_Layer.Center_cubit,
+			Center_back_cubit:  r.Top_Layer.Center_cubit,
+			Center_right_cubit: r.Middle_Layer.Center_right_cubit,
+			Center_left_cubit:  r.Middle_Layer.Center_left_cubit,
+		},
+		Bottom_Layer: Bottom_Layer{
+			Left_front:   r.Bottom_Layer.Left_front,
+			Left_mid:     r.Bottom_Layer.Left_mid,
+			Left_back:    r.Bottom_Layer.Left_back,
+			Mid_front:    Mid_cubit{Top_face: r.Bottom_Layer.Mid_back.Front_face, Front_face: r.Bottom_Layer.Mid_back.Top_face},
+			Mid_back:     Mid_cubit{Top_face: r.Top_Layer.Mid_back.Front_face, Front_face: r.Top_Layer.Mid_back.Top_face},
+			Right_front:  r.Bottom_Layer.Right_front,
+			Right_mid:    r.Bottom_Layer.Right_mid,
+			Right_back:   r.Bottom_Layer.Right_back,
+			Center_cubit: r.Middle_Layer.Center_back_cubit,
+		},
 	}
 	r = &tmp_r
 	return r
