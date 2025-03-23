@@ -9,6 +9,13 @@ import (
 func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 
 	referrenceFace := cube.Front_face
+	markedMap := map[string]string{
+		"U": "!",
+		"R": "!",
+		"D": "!",
+		"L": "!",
+	}
+
 	for i := range 4 {
 		if cube.Top_Layer.Mid_front.Front_face == referrenceFace {
 			if i > 0 {
@@ -18,6 +25,7 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 					m.Commands = append(m.Commands, "U")
 				}
 			}
+			markedMap["U"] = "x"
 			break
 		}
 		cube = cube.U()
@@ -31,8 +39,11 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 				} else {
 					m.Commands = append(m.Commands, "R")
 				}
-				cube = BottomCross(cube)
+				if !checkTLCross(cube, referrenceFace) {
+					cube = BottomCross(cube)
+				}
 			}
+			markedMap["R"] = "x"
 			break
 		}
 		cube = cube.R()
@@ -46,8 +57,11 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 				} else {
 					m.Commands = append(m.Commands, "L")
 				}
-				cube = BottomCross(cube)
+				if !checkTLCross(cube, referrenceFace) || !checkRMLCross(cube, referrenceFace) {
+					cube = BottomCross(cube)
+				}
 			}
+			markedMap["L"] = "x"
 			break
 		}
 		cube = cube.L()
@@ -62,27 +76,38 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 				} else {
 					m.Commands = append(m.Commands, "D")
 				}
-				cube = BottomCross(cube)
+				if !checkTLCross(cube, referrenceFace) || !checkRMLCross(cube, referrenceFace) || !checkLMLCross(cube, referrenceFace) {
+					cube = BottomCross(cube)
+				}
 			}
+			markedMap["D"] = "x"
 			break
 		}
 		cube = cube.D()
 
 	}
-	// if m.Commands[len(m.Commands)-1] != "U" {
-
-	// }
+	// create a map that will hold the aligned faces and mark them as checked when they have been aligned
+	//the map should help in knowing the moves to take considering the face(s) that have not been conditioned properly
+	//there are 14 insances where missing valuse can occur
+	if !checkBLCross(cube, referrenceFace) {
+		cube = BottomCross(cube)
+	}
+	fmt.Println(markedMap)
 	return cube
-
 }
 
-func checkMidCompatability(cube *m.Rubik_cube) {
-	//check if the top middle face is the base color and check if the color is compatible to the corresponding center cube territory
-	for cube.Top_Layer.Mid_front.Front_face == cube.Front_face {
-		if cube.Top_Layer.Mid_front.Top_face == cube.Top_Layer.Center_cubit {
-			break
-		} else {
+func checkTLCross(c *m.Rubik_cube, refColor string) bool {
+	return c.Top_Layer.Mid_front.Front_face == refColor
+}
 
-		}
-	}
+func checkRMLCross(c *m.Rubik_cube, refColor string) bool {
+	return c.Middle_Layer.Right_front.Front_face == refColor
+}
+
+func checkLMLCross(c *m.Rubik_cube, refColor string) bool {
+	return c.Bottom_Layer.Mid_front.Front_face == refColor
+}
+
+func checkBLCross(c *m.Rubik_cube, refColor string) bool {
+	return c.Middle_Layer.Left_front.Front_face == refColor
 }
