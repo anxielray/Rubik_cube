@@ -86,9 +86,19 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 		cube = cube.D()
 
 	}
-	// create a map that will hold the aligned faces and mark them as checked when they have been aligned
-	//the map should help in knowing the moves to take considering the face(s) that have not been conditioned properly
-	//there are 14 insances where missing valuse can occur
+	/*
+	There are 14 insances where missing values can occur
+	Start with the planB to B{4loop{U}} this will enable the program to venture into the back middle-cubits
+	If planBU is not sufficient planCU 2{U B R' U' R}, {U'B R' U' R}, {2U, B R' U' R}
+	And if planC is not sufficient, then finally planDU 2{U B L U' L'}, {U'B L U' L'}, {2U, B L U' L'}
+	Performing these operations at each interval before performing the 4loop{U} will ensure that
+	all middle cubits present are tested without necessarily interfering with the other
+	arranged middle-cubits of the other layers. Alll the layers should have been covered by
+	now meaning that the referrence mid-cubt must have been found already
+	============================================================
+	To avoid writing too many commands, mind writing the function to  turn the cube in different planes to reuse the same functions
+	and methods
+	*/
 	if !checkBLCross(cube, referrenceFace) {
 		cube = BottomCross(cube)
 	}
