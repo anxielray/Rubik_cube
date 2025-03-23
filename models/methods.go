@@ -76,6 +76,7 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 	return rubikCube, nil
 }
 
+//===( This function rotates the cube in the plane axis through a degree of angle rotation )====
 func Rotation(c *Rubik_cube, plane string, angle int) *Rubik_cube {
 
 	if plane == "x" {
