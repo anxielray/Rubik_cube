@@ -8,9 +8,9 @@
 
 - *BUild the models that define a rubik's cube.*
 - *Add models that define 2/3 types of cubits in the Rubik's cube*
-- 
+-
 
-***
+---
 
 ## Algorithm
 
@@ -26,9 +26,13 @@
 - _We will try to achieve a cross, for the color? Thats all up to you!_
 - _Start by any algorithm for the search of the mid-cubit faces that match the color you just picked._
 - _Next we let's make sure  we have a cross, if you happend to have formed a corner as well, that doesn't really matter._
-- _Once we have all 4 cardinal cubits in place, we want to confirm their alignment to their prescedent `face-rulers`{The center cubits of the faces, the mid-cubits fall in, apart from your selected faces}_
-- _Match them!_
-- _After that, check for the corner cubit that fits in a specific corner, and place it right under its correct position`(in the opposite face)`. After that, perform a series of the commands {U, R', U' R}. Do this until the corner cubit is aligned perfectly. Do the same for all the other corner cubuits_
-- _If you are keen! The bottom layer should be solved!_
-- _Congratulations, you mastered the algorithm to solve any face in the cube independently_
+- _Once we have all 4 cardinal cubits in place, we want to confirm their alignment to their prescedent `face-rulers`{The center cubits of the faces, the mid-cubits fall in, apart from your selected faces} and match them!_
+- _After that, check for the corner cubit that fits in a specific corner, and place it right under its correct position `(in the opposite face)`. After that, perform a series of the commands {U, R', U' R}. Do this until the corner cubit is aligned perfectly. Do the same for all the other corner cubuits_
+- _If you are keen! The bottom layer should be already solved by now!_
+- _Congratulations! you mastered the algorithm to solve any face in the cube independently!_
 
+---
+
+### _Middle Layer_
+
+- _Now let us handle the middle layer_
