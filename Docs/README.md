@@ -6,9 +6,10 @@
 
 ### M1
 
-- *BUild the models that define a rubik's cube.*
-- *Add models that define 2/3 types of cubits in the Rubik's cube*
--
+- *BUild the models that define a rubik's cube.* [Done!]
+- *Add models that define 2/3 types of cubits in the Rubik's cube*[Done!]
+- _Add comments on the parts that need optimiations in later improvements with the program_
+- _Define a method that describes the cube moving in different planes. In logocal reasoning, this is turning the cube up, down, or to the side_ [Done!]
 
 ---
 
@@ -36,3 +37,17 @@
 ### _Middle Layer_
 
 - _Now let us handle the middle layer_
+
+---
+
+### _Top Layer_
+
+- _Finally let us look at the algorithms that will run on the final layer_
+- _In this layer, we have to be a lil more specific. One of the goals, is to use algorithms that do not, in any wa affect the other solved layers and does not disorient them, if not temporalily_
+
+---
+
+## _Optimizations_
+
+- _I will now speak about the optimizaions I made on my code to run faster and use less memory, making its time complexity as well as its space complexity efficient_
+...
