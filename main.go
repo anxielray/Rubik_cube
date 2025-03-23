@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"os"
-	u "anxiel_cube/utils"
+	// u "anxiel_cube/utils"
+	m "anxiel_cube/models"
+	algo "anxiel_cube/algorithm"
 )
 
 
 func main() {
-	fmt.Printf("Your first argument id %s\n", os.Args[1])
-	fmt.Println("Hello Raymond! We successfully setup golang!")
-	fmt.Println(u.Process_input(os.Args[1]))
+	fmt.Println("========This is the Solution======")
+	pzzle, _ := m.PopulateRubikCube(os.Args[1])
+	fmt.Println(algo.SolveRC(pzzle))
 }
 
