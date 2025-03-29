@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-var counter int
+// var counter int
 var markedMap = map[string]string{
 	"U": "!",
 	"R": "!",
@@ -101,123 +101,16 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 		and methods
 	*/
 
-	if markedMap["U"] == "!" {
-		if counter > 0 {
-			counter += 1
-		}
-		if counter == 0 {
-			
-			for i := range 4 {
-				for x := range 4 {
-					if !checkTLCross(cube, referrenceFace) {
-						cube = cube.B()
-						fmt.Println(cube.Top_Layer)
-					} else if checkTLCross(cube, referrenceFace) {
-						if i > 0 {
-							if i > 1 {
-								m.Commands = append(m.Commands, fmt.Sprintf("%dB", i))
-								if x > 0 {
-									if x > 1 {
-										m.Commands = append(m.Commands, fmt.Sprintf("%dU", x))
-									} else {
-										m.Commands = append(m.Commands, "U")
-									}
-								}
-							} else {
-								m.Commands = append(m.Commands, "B")
-								if x > 0 {
-									if x > 1 {
-										m.Commands = append(m.Commands, fmt.Sprintf("%dU", x))
-									} else {
-										m.Commands = append(m.Commands, "U")
-									}
-								}
-							}
-						}
-						markedMap["U"] = "x"
-						break
-					}
-					cube = cube.U()
-				}
-			}
-			counter = 1
-		}
-		if !checkTLCross(cube, referrenceFace) {
+	// if markedMap["U"] == "!" {
 
-			planBU := func(cube *m.Rubik_cube, counter int) *m.Rubik_cube {
-				if counter == 1 {
-					cube = cube.U()
-					cube = cube.B()
-					cube = cube.R_p()
-					cube = cube.U_p()
-					cube = cube.R()
-				} else if counter == 2 {
-					for range counter {
-						cube = cube.U()
-					}
-					cube = cube.B()
-					cube = cube.R_p()
-					cube = cube.U_p()
-					cube = cube.R()
-				} else if counter == 3 {
-					cube = cube.U_p()
-					cube = cube.B()
-					cube = cube.R_p()
-					cube = cube.U_p()
-					cube = cube.R()
-				} else if counter == 4 {
-					cube = cube.U()
-					cube = cube.U()
-					cube = cube.B()
-					cube = cube.R_p()
-					cube = cube.R()
-				}
-				return cube
-			}
-			if counter > 0 && counter < 5 {
-				cube = BottomCross(planBU(cube, counter))
-			}
+	// }
 
-			planCU := func(c *m.Rubik_cube, counter int) *m.Rubik_cube {
-				if counter == 5 { // 2{U B L U' L'}
-					cube = cube.U()
-					cube = cube.B()
-					cube = cube.L()
-					cube = cube.U_p()
-					cube = cube.L_p()
-				} else if counter == 6 {
-					cube = cube.U()
-					cube = cube.U()
-					cube = cube.B()
-					cube = cube.L()
-					cube = cube.U_p()
-					cube = cube.L_p()
-				} else if counter == 7 {
-					cube = cube.U_p()
-					cube = cube.B()
-					cube = cube.L()
-					cube = cube.U_p()
-					cube = cube.L_p()
-				} else if counter == 8 {
-					cube = cube.U_p()
-					cube = cube.B()
-					cube = cube.L()
-					cube = cube.U_p()
-					cube = cube.L_p()
-				}
-				return cube
-			}
-			if !checkTLCross(cube, referrenceFace) {
-				cube = BottomCross(planCU(cube, counter))
-			}
-		}
-	}
-
-	if !checkBLCross(cube, referrenceFace) {
-		cube = BottomCross(cube)
-	}
+	// if !checkBLCross(cube, referrenceFace) {
+	// 	cube = BottomCross(cube)
+	// }
 	fmt.Println(markedMap)
-	return cube
+	/*if CheckCross(cube, referrenceFace) {*/return cube//}
+	// return nil
 }
 
 func checkTLCross(c *m.Rubik_cube, refColor string) bool {
@@ -234,4 +127,8 @@ func checkLMLCross(c *m.Rubik_cube, refColor string) bool {
 
 func checkBLCross(c *m.Rubik_cube, refColor string) bool {
 	return c.Middle_Layer.Left_front.Front_face == refColor
+}
+
+func CheckCross(c *m.Rubik_cube, refColor string) bool {
+	return checkTLCross(c, refColor) && checkRMLCross(c , refColor) && checkLMLCross(c, refColor) && checkBLCross(c, refColor)
 }
