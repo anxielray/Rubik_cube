@@ -48,10 +48,10 @@ type Middle_Layer  struct {
 }
 
 type Rubik_cube struct {
+	Front_face string
 	Top_Layer Top_Layer
 	Middle_Layer Middle_Layer
 	Bottom_Layer Bottom_Layer
-	Front_face string
 }
 
 
