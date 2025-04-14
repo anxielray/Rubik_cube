@@ -87,23 +87,19 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 		cube = cube.D()
 
 	}
-	/*
-		There are 14 insances where missing values can occur
-		Start with the planB to B{4loop{U}} this will enable the program to venture into the back middle-cubits
-		If planBU is not sufficient planCU 2{U B R' U' R}, {U'B R' U' R}, {2U, B R' U' R}
-		And if planC is not sufficient, then finally planDU 2{U B L U' L'}, {U'B L U' L'}, {2U, B L U' L'}
-		Performing these operations at each interval before performing the 4loop{U} will ensure that
-		all middle cubits present are tested without necessarily interfering with the other
-		arranged middle-cubits of the other layers. Alll the layers should have been covered by
-		now meaning that the referrence mid-cubt must have been found already
-		============================================================
-		To avoid writing too many commands, mind writing the function to  turn the cube in different planes to reuse the same functions
-		and methods
-	*/
 
-	// if markedMap["U"] == "!" {
-
-	// }
+	if markedMap["U"] == "!" {
+		var ok bool
+		ok, cube = InvertedTopCross(cube, referrenceFace)
+		if ok {
+			m.Commands = append(m.Commands, "2U")
+			m.Commands = append(m.Commands, "B")
+			m.Commands = append(m.Commands, "L")
+			m.Commands = append(m.Commands, "U'")
+			m.Commands = append(m.Commands, "L'")
+			markedMap["U"] = "x"
+		}
+	}
 
 	// if !checkBLCross(cube, referrenceFace) {
 	// 	cube = BottomCross(cube)
@@ -131,4 +127,19 @@ func checkBLCross(c *m.Rubik_cube, refColor string) bool {
 
 func CheckCross(c *m.Rubik_cube, refColor string) bool {
 	return checkTLCross(c, refColor) && checkRMLCross(c , refColor) && checkLMLCross(c, refColor) && checkBLCross(c, refColor)
+}
+
+func InvertedTopCross(c *m.Rubik_cube, refColor string) (bool, *m.Rubik_cube) {
+	// 2U B L U'
+	var c_cp m.Rubik_cube
+	c_cp = *c
+	c_cp = *c_cp.U()
+	c_cp = *c_cp.U()
+	c_cp = *c_cp.B()
+	c_cp = *c_cp.L()
+	c_cp = *c_cp.U_p()
+	c_cp = *c_cp.L_p()
+	var decicion = c_cp.Top_Layer.Mid_front.Front_face == refColor
+	c = &c_cp
+	return decicion, c
 }
