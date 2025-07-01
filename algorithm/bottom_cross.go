@@ -145,7 +145,6 @@ func alignTheCube(cube *m.Rubik_cube) *m.Rubik_cube {
 	c := cube
 	for i := range 4 {
 		if c.Top_Layer.Mid_front.Top_face == c.Top_Layer.Center_cubit {
-			fmt.Println(":hey")
 
 			// after checking the top, the rest should be alligned
 			if c.Middle_Layer.Right_front.Top_face == c.Middle_Layer.Center_right_cubit {
@@ -161,7 +160,6 @@ func alignTheCube(cube *m.Rubik_cube) *m.Rubik_cube {
 								m.Commands = append(m.Commands, "F")
 							}
 						}
-						fmt.Println("all the faces alligned")
 						break
 					} else {
 						println("the bottom face and the cross do not allign")
