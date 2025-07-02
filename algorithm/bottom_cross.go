@@ -91,6 +91,7 @@ func BottomCross(cube *m.Rubik_cube) *m.Rubik_cube {
 
 	}
 
+	// sort for the bottom section to allign for the cross
 	for i := range 4 {
 		if cube.Bottom_Layer.Mid_front.Front_face == referrenceFace {
 			if i > 0 {
