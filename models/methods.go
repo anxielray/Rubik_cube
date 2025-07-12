@@ -102,18 +102,18 @@ func Rotation(c *Rubik_cube, plane string, angle int) *Rubik_cube {
 		switch angle {
 		case 90, -270:
 			c = c.R()
-			c = c.My()
+			c = c.My().My().My()
 			c = c.L_p()
 		case 180, -180:
 			for range 2 {
 				c = c.R()
-				c = c.My()
+				c = c.My().My().My()
 				c = c.L_p()
 			}
 		case 270, -90:
 			for range 3 {
 				c = c.R()
-				c = c.My()
+				c = c.My().My().My()
 				c = c.L_p()
 			}
 		}
