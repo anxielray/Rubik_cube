@@ -384,6 +384,7 @@ func (r *Rubik_cube) D_p() *Rubik_cube {
 	return r
 }
 
+// method to rotate the middle x-axis layer clockwise
 func (r *Rubik_cube) Mx() *Rubik_cube {
 
 	tmp_r := *r
@@ -401,6 +402,7 @@ func (r *Rubik_cube) Mx() *Rubik_cube {
 	return r
 }
 
+// method to rotate the middle y-axis layer clockwise
 func (r *Rubik_cube) My() *Rubik_cube {
 
 	tmp_r := Rubik_cube{
@@ -411,7 +413,7 @@ func (r *Rubik_cube) My() *Rubik_cube {
 			Mid_front:    Mid_cubit{Top_face: r.Bottom_Layer.Mid_front.Front_face, Front_face: r.Bottom_Layer.Mid_front.Top_face},
 			Mid_back:     Mid_cubit{Top_face: r.Top_Layer.Mid_front.Front_face, Front_face: r.Top_Layer.Mid_front.Top_face},
 			Right_front:  r.Top_Layer.Right_front,
-			Center_cubit: r.Top_Layer.Center_cubit,
+			Center_cubit: r.Middle_Layer.Center_front_cubit,
 			Right_mid:    r.Top_Layer.Right_mid,
 			Right_back:   r.Top_Layer.Right_back,
 		},
