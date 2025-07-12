@@ -98,23 +98,15 @@ func combo(ct, cf, cs string, cubit m.Corner_cubit) bool {
 
 // corner allign is a functiont that checks if the corner cubit is in it's correct position
 func cornerAllign(c *m.Rubik_cube) bool {
-	return (c.Top_Layer.Left_front.Top_face == c.Top_Layer.Center_cubit && c.Top_Layer.Left_front.Top_face == c.Top_Layer.Mid_front.Top_face) && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_left_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Left_front.Top_face && c.Top_Layer.Left_front.Front_face == c.Middle_Layer.Center_front_cubit && c.Top_Layer.Left_front.Front_face == c.Middle_Layer.Left_front.Front_face
+	return (c.Top_Layer.Left_front.Top_face == c.Top_Layer.Mid_front.Top_face) && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Left_front.Top_face && c.Top_Layer.Left_front.Front_face == c.Middle_Layer.Center_front_cubit
 }
 
 func cornersAllign(c *m.Rubik_cube) bool {
-	if c.Top_Layer.Left_front.Top_face == c.Top_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_left_cubit {
-		if c.Top_Layer.Left_front.Top_face == c.Top_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_left_cubit {
-			if c.Top_Layer.Left_front.Top_face == c.Top_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_right_cubit {
-				if c.Top_Layer.Left_front.Top_face == c.Top_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_back_cubit {
-					if c.Top_Layer.Left_front.Top_face == c.Bottom_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_left_cubit {
-						if c.Top_Layer.Left_front.Top_face == c.Bottom_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_left_cubit {
-							if c.Top_Layer.Left_front.Top_face == c.Bottom_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_right_cubit {
-								if c.Top_Layer.Left_front.Top_face == c.Bottom_Layer.Center_cubit && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Center_back_cubit {
-									return true
-								}
-							}
-						}
-					}
+	if c.Top_Layer.Left_front.Top_face == c.Top_Layer.Mid_back.Top_face && c.Top_Layer.Left_front.Side_face == c.Middle_Layer.Left_front.Top_face && c.Top_Layer.Left_front.Front_face == c.Top_Layer.Mid_front.Front_face {
+		if c.Top_Layer.Right_front.Top_face == c.Top_Layer.Mid_front.Top_face && c.Top_Layer.Right_front.Side_face == c.Middle_Layer.Right_front.Top_face && c.Top_Layer.Right_front.Front_face == c.Middle_Layer.Right_front.Front_face {
+			if c.Bottom_Layer.Right_front.Top_face == c.Bottom_Layer.Mid_front.Top_face && c.Bottom_Layer.Right_front.Front_face == c.Bottom_Layer.Mid_front.Front_face && c.Bottom_Layer.Right_front.Side_face == c.Middle_Layer.Right_front.Top_face {
+				if c.Bottom_Layer.Left_front.Top_face == c.Bottom_Layer.Mid_front.Top_face && c.Bottom_Layer.Left_front.Front_face == c.Bottom_Layer.Mid_front.Front_face && c.Bottom_Layer.Left_front.Side_face == c.Middle_Layer.Left_front.Top_face {
+					return true
 				}
 			}
 		}
@@ -122,7 +114,7 @@ func cornersAllign(c *m.Rubik_cube) bool {
 	return false
 }
 
-// sort corners will run some commands to rotate the corner cubits as per some 4 commands
+// sort corners will run some commands to rotate the corner cubit trying to allign it properly with its supposed position
 func sortCorner(c *m.Rubik_cube) *m.Rubik_cube {
 	for !cornerAllign(c) {
 		c = c.L().U_p().L_p().U()
@@ -131,9 +123,7 @@ func sortCorner(c *m.Rubik_cube) *m.Rubik_cube {
 		m.Commands = append(m.Commands, "L'")
 		m.Commands = append(m.Commands, "U")
 	}
-	if cornerAllign(c) {
-		c = c.F()
-		m.Commands = append(m.Commands, "F")
-	}
+	c = c.F()
+	m.Commands = append(m.Commands, "F")
 	return c
 }
