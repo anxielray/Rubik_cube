@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// ===( This is a function that will populate the file input into the virtual {3x3} rubik's cube )====
+// Populate... is a function that populates the file input into the virtual {3x3x3} rubik's cube
 func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 	file, err := os.Open(fileName)
 	if err != nil {
@@ -63,7 +63,7 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 		Bottom_Layer: Bottom_Layer{
 			Left_front:   Corner_cubit{Top_face: faces[5][0], Front_face: faces[0][6], Side_face: faces[3][8]},
 			Left_mid:     Mid_cubit{Top_face: faces[5][3], Front_face: faces[3][7]},
-			Left_back:    Corner_cubit{Top_face: faces[5][6], Front_face: faces[3][6], Side_face: faces[2][8]},
+			Left_back:    Corner_cubit{Top_face: faces[5][6], Front_face: faces[2][8], Side_face: faces[3][6]},
 			Mid_front:    Mid_cubit{Top_face: faces[5][1], Front_face: faces[0][7]},
 			Mid_back:     Mid_cubit{Top_face: faces[5][7], Front_face: faces[2][7]},
 			Right_front:  Corner_cubit{Top_face: faces[5][2], Front_face: faces[0][8], Side_face: faces[1][6]},
@@ -72,46 +72,48 @@ func PopulateRubikCube(fileName string) (*Rubik_cube, error) {
 			Center_cubit: faces[5][4],
 		},
 	}
-
 	return rubikCube, nil
 }
 
-//===( This function rotates the cube in the plane axis through a degree of angle rotation )====
+// ===( This function rotates the cube in the plane axis through a degree of angle rotation )====
 func Rotation(c *Rubik_cube, plane string, angle int) *Rubik_cube {
 
-	if plane == "x" {
-		if angle == 90 || angle == -270 {
+	switch plane {
+	case "x":
+		switch angle {
+		case 90, -270:
 			c = c.U()
 			c = c.Mx()
 			c = c.D_p()
-		} else if angle == 180 || angle == -180 {
+		case 180, -180:
 			for range 2 {
 				c = c.U()
 				c = c.Mx()
 				c = c.D_p()
 			}
-		} else if angle == 270 || angle == -90 {
+		case 270, -90:
 			for range 3 {
 				c = c.U()
 				c = c.Mx()
 				c = c.D_p()
 			}
 		}
-	} else if plane == "y" {
-		if angle == 90 || angle == -270 {
+	case "y":
+		switch angle {
+		case 90, -270:
 			c = c.R()
-			c = c.My()
+			c = c.My().My().My()
 			c = c.L_p()
-		} else if angle == 180 || angle == -180 {
+		case 180, -180:
 			for range 2 {
 				c = c.R()
-				c = c.My()
+				c = c.My().My().My()
 				c = c.L_p()
 			}
-		} else if angle == 270 || angle == -90 {
+		case 270, -90:
 			for range 3 {
 				c = c.R()
-				c = c.My()
+				c = c.My().My().My()
 				c = c.L_p()
 			}
 		}

@@ -17,11 +17,11 @@ type Top_Layer  struct {
 	Mid_front Mid_cubit
 	Right_front Corner_cubit
 	Right_mid Mid_cubit
-	Right_back Corner_cubit
-	Mid_back Mid_cubit
-	Left_back Corner_cubit
-	Left_mid Mid_cubit
 	Center_cubit string
+	Left_mid Mid_cubit
+	Left_back Corner_cubit
+	Mid_back Mid_cubit
+	Right_back Corner_cubit
 }
 
 type Bottom_Layer  struct {
@@ -29,11 +29,11 @@ type Bottom_Layer  struct {
 	Mid_front Mid_cubit
 	Right_front Corner_cubit
 	Right_mid Mid_cubit
-	Right_back Corner_cubit
-	Mid_back Mid_cubit
-	Left_back Corner_cubit
-	Left_mid Mid_cubit
 	Center_cubit string
+	Left_mid Mid_cubit
+	Left_back Corner_cubit
+	Mid_back Mid_cubit
+	Right_back Corner_cubit
 }
 
 type Middle_Layer  struct {
